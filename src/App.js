@@ -1,33 +1,15 @@
 import React, {Component} from 'react';
-import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
-import {FacebookLoginButton} from "./components/facebook-login-button";
+import RootNavigator from './navigators/RootNavigator';
+import {StyleProvider} from 'native-base';
+import platform from '../native-base-theme/variables/platform';
+import getTheme from '../native-base-theme/components';
 
-export default class AnatomyExample extends Component {
+export default class App extends Component {
     render() {
         return (
-            <Container>
-                <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Header</Title>
-                    </Body>
-                    <Right />
-                </Header>
-                <Content padder>
-                    <FacebookLoginButton/>
-                </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button full>
-                            <Text>Footer</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-            </Container>
+            <StyleProvider style={getTheme(platform)}>
+                <RootNavigator />
+            </StyleProvider>
         );
     }
 }

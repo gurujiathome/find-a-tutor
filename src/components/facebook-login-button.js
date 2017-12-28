@@ -56,7 +56,6 @@ export class FacebookLoginButton extends Component {
     }
 
     saveAuthToken(fbAccessToken) {
-        console.log(fbAccessToken);
         fetch('http://192.168.2.101:3000/api/auth/facebook', {
             method: 'POST',
             headers: {
@@ -64,7 +63,6 @@ export class FacebookLoginButton extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 let token = response.headers.get('x-auth-token');
                 if (token) {
                     AsyncStorage.setItem('@findatutor:auth-token', token)
