@@ -20,7 +20,6 @@ export class FacebookLoginButton extends Component {
 
         AsyncStorage.getItem('@findatutor:auth-token')
             .then(value => {
-                console.log(value);
                 if (value) {
                     this.setState(() => loggedIn)
                 }
