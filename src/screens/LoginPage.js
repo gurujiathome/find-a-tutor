@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
-import {Container, Content, Text} from 'native-base';
-import {FacebookLoginButton} from './FacebookLoginButton';
+import {Container, Text} from 'native-base';
 
-export default class LoginScreen extends Component {
+export class LoginPage extends Component {
     render() {
         return (
             <Container>
                 <Content padder>
                     <Text>
-                        By móc korzystać z tej funkcjonalności, trzeba się zalogwać.{'\n'}
+                        By móc korzystać z tej funkcjonalności, trzeba się zalogować.{'\n'}
                     </Text>
                     <FacebookLoginButton />
                 </Content>
             </Container>
-        );
+        )
     }
 }
