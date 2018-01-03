@@ -37,38 +37,11 @@ export class FacebookLoginButton extends Component {
                 ]
             );
         } else {
-            let request = new GraphRequest('/me', {
-                httpMethod: 'GET',
-                version: 'v2.5'
-            }, () => {
-                AccessToken.getCurrentAccessToken()
-                    .then(data => data.accessToken.toString())
-                    .then(data => this.saveAuthToken(data));
-            });
 
-            LoginManager.logInWithReadPermissions(['public_profile', 'email'])
-                .then(
-                    result => !result.isCancelled && new GraphRequestManager().addRequest(request).start(),
-                    error => alert('Logowanie nie powiodło się: ' + error)
-                );
         }
     }
 
-    saveAuthToken(fbAccessToken) {
-        fetch('http://192.168.2.101:3000/api/auth/facebook', {
-            method: 'POST',
-            headers: {
-                access_token: fbAccessToken
-            }
-        })
-            .then(response => {
-                let token = response.headers.get('x-auth-token');
-                if (token) {
-                    AsyncStorage.setItem('@findatutor:auth-token', token)
-                        .then(() => this.setState(() => loggedIn));
-                }
-            })
-    }
+
 
     logout() {
         AsyncStorage.removeItem('@findatutor:auth-token')
@@ -77,9 +50,7 @@ export class FacebookLoginButton extends Component {
 
     render() {
         return (
-            <Button onPress={() => this.handleFacebookLogin()} primary>
-                <Text>{this.state.text}</Text>
-            </Button>
+
         );
     }
 }
