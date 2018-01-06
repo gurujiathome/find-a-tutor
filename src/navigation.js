@@ -18,6 +18,12 @@ const TutorModeNavigator = StackNavigator({
 export const DefaultNavigator = StackNavigator({
     LoginPage: {
         screen: LoginPage
+    },
+    StudentMode: {
+        screen: StudentModeNavigator
+    },
+    TutorMode: {
+        screen: TutorModeNavigator
     }
 }, {
     headerMode: 'none'
