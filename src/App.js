@@ -11,19 +11,6 @@ import store from './store'
 // https://stackoverflow.com/questions/42876690/react-navigation-with-login-screen
 // god bless this guy
 class App extends Component {
-    // componentWillMount() {
-    //     if (Platform.OS !== 'android') return;
-    //     BackHandler.addEventListener('hardwareBackPress', () => {
-    //         const {dispatch} = this.props;
-    //         dispatch({ type: 'Navigation/BACK' });
-    //         return true;
-    //     })
-    // }
-    //
-    // componentWillUnmount() {
-    //     if (Platform.OS === 'android') BackHandler.removeEventListener('hardwareBackPress')
-    // }
-
     render() {
         const {dispatch, nav} = this.props;
         const navigation = addNavigationHelpers({
@@ -49,3 +36,4 @@ const Root = () => (
 );
 
 export default Root;
+export const serverUri = 'http://192.168.0.13:3000/api/';

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Icon, Text, Button, Content} from 'native-base';
-import {login, selectMode} from '../actions/settings';
+import {login, loginFailed, selectMode} from '../actions/settings';
 import {connect} from 'react-redux';
+import {AsyncStorage} from 'react-native';
 
 const LoginPageContentNoStore = ({onClick}) => {
     return (
@@ -33,7 +34,6 @@ class LoginPageContainer extends Component {
     }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         onClick: () => {
@@ -48,7 +48,7 @@ const LoginPageContent = connect(null, mapDispatchToProps)(LoginPageContentNoSto
 const mapStateToProps = state => {
     return {
         mode: state.settings.mode,
-        isAuthenticated: Boolean(state.settings.user.name)
+        isAuthenticated: Boolean(state.settings.user.token && state.settings.user.fbId)
     };
 };
 const LoginPage = connect(mapStateToProps)(LoginPageContainer);

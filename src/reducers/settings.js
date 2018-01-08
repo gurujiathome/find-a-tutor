@@ -6,12 +6,18 @@ function user(state = {
 }, action) {
     switch (action.type) {
         case 'LOGIN_SUCCESS':
-            return kupa = {
-                name: action.userData.id
-            };
+            let userData = action.userData;
+            userData.token = action.userToken;
+            console.log(userData);
+            return userData;
         case 'LOGIN_FAIL':
             console.log(action.error);
             return state;
+        case 'LOGIN_LOGOUT':
+            return {
+                name: null,
+                picture: null
+            };
         default:
             return state;
     }

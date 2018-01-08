@@ -1,7 +1,8 @@
 import {StackNavigator} from 'react-navigation'
-import {Courses} from './screens/StudentMode/Courses'
+import Courses from './screens/StudentMode/Courses'
 import {AddCourse} from './screens/TutorMode/AddCourse'
 import LoginPage from './screens/LoginPage';
+import {SplashScreen} from './screens/SplashScreen';
 
 const StudentModeNavigator = StackNavigator({
     Courses: {
@@ -16,6 +17,9 @@ const TutorModeNavigator = StackNavigator({
 });
 
 export const DefaultNavigator = StackNavigator({
+    SplashScreen: {
+        screen: SplashScreen
+    },
     LoginPage: {
         screen: LoginPage
     },

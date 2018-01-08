@@ -1,5 +1,6 @@
 import {AuthService} from '../services/AuthService';
 import {AccessToken, GraphRequest, GraphRequestManager, LoginManager} from 'react-native-fbsdk';
+import {serverUri} from '../App';
 
 export function selectMode(mode) {
     return {
@@ -21,10 +22,18 @@ export function loginFailed(error) {
     }
 }
 
-export function loginSuccess(userData) {
+export function loginSuccess(userData, userToken) {
+    console.log(userData, userToken);
     return {
         type: 'LOGIN_SUCCESS',
-        userData
+        userData,
+        userToken
+    }
+}
+
+export function logout() {
+    return {
+        type: 'LOGIN_LOGOUT'
     }
 }
 
@@ -40,12 +49,27 @@ export function login() {
                 .then(data => data.accessToken.toString())
                 .then(data => AuthService.saveAuthToken(data))
                 .then(
-                    result => dispatch(loginSuccess(result)),
+                    token => dispatch(authenticateUser(token)),
                     error => dispatch(loginFailed(error))
                 );
         });
 
         LoginManager.logInWithReadPermissions(['public_profile', 'email'])
             .then(result => !result.isCancelled && new GraphRequestManager().addRequest(request).start());
+    }
+}
+
+export function authenticateUser(userToken) {
+    console.log(userToken);
+    return function (dispatch) {
+        fetch(serverUri + 'auth/me', {
+            method: 'GET',
+            headers: {
+                'x-auth-token': userToken
+            }
+        })
+            .then(response => response.json(),
+                error => dispatch(loginFailed(error)))
+            .then(response => dispatch(loginSuccess(response, userToken)));
     }
 }
