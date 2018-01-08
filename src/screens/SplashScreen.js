@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Content} from 'native-base';
 import {AsyncStorage} from 'react-native';
-import {AuthService} from '../services/AuthService';
 
 export class SplashScreen extends Component {
     componentWillMount() {

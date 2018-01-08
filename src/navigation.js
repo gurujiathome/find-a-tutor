@@ -1,6 +1,6 @@
-import {StackNavigator} from 'react-navigation'
-import Courses from './screens/StudentMode/Courses'
-import {AddCourse} from './screens/TutorMode/AddCourse'
+import {StackNavigator} from 'react-navigation';
+import Courses from './screens/StudentMode/Courses';
+import {AddCourse} from './screens/TutorMode/AddCourse';
 import LoginPage from './screens/LoginPage';
 import {SplashScreen} from './screens/SplashScreen';
 

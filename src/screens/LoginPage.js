@@ -1,22 +1,7 @@
 import React, {Component} from 'react';
-import {Container, Icon, Text, Button, Content} from 'native-base';
-import {login, loginFailed, selectMode} from '../actions/settings';
+import {Container, Content, Text, Button, Icon} from 'native-base';
 import {connect} from 'react-redux';
-import {AsyncStorage} from 'react-native';
-
-const LoginPageContentNoStore = ({onClick}) => {
-    return (
-        <Content padder>
-            <Text>
-                Witaj xD
-            </Text>
-            <Button onPress={() => onClick()} primary>
-                <Icon name="facebook-f"/>
-                <Text>Zaloguj się przez Facebooka</Text>
-            </Button>
-        </Content>
-    );
-};
+import {login, selectMode} from '../actions/settings';
 
 class LoginPageContainer extends Component {
     componentWillReceiveProps(nextProps) {
@@ -30,20 +15,24 @@ class LoginPageContainer extends Component {
     }
 
     render() {
-        return (<Container><LoginPageContent/></Container>);
+        return (
+            <Container>
+                <Content padder>
+                    <Text>
+                        Witaj xD
+                    </Text>
+                    <Button onPress={() => {
+                        this.props.dispatch(login());
+                        this.props.dispatch(selectMode('student'));
+                    }} primary>
+                        <Icon name="facebook-f"/>
+                        <Text>Zaloguj się przez Facebooka</Text>
+                    </Button>
+                </Content>
+            </Container>
+        );
     }
 }
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onClick: () => {
-            dispatch(login());
-            dispatch(selectMode('student'));
-        }
-    }
-};
-
-const LoginPageContent = connect(null, mapDispatchToProps)(LoginPageContentNoStore);
 
 const mapStateToProps = state => {
     return {
@@ -52,4 +41,5 @@ const mapStateToProps = state => {
     };
 };
 const LoginPage = connect(mapStateToProps)(LoginPageContainer);
+
 export default LoginPage;

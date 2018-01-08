@@ -1,23 +1,16 @@
 import {combineReducers} from 'redux';
 
-function user(state = {
-    name: null,
-    picture: null
-}, action) {
+function user(state = {token: null, fbId: null}, action) {
     switch (action.type) {
         case 'LOGIN_SUCCESS':
             let userData = action.userData;
             userData.token = action.userToken;
-            console.log(userData);
             return userData;
         case 'LOGIN_FAIL':
             console.log(action.error);
             return state;
         case 'LOGIN_LOGOUT':
-            return {
-                name: null,
-                picture: null
-            };
+            return {token: null, fbId: null};
         default:
             return state;
     }

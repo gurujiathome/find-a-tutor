@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import {Container, ListItem, Left, Body, Right, Thumbnail, Text} from 'native-base';
 
 export class CourseListElement extends Component {
     render() {
@@ -7,7 +7,7 @@ export class CourseListElement extends Component {
             <Container>
                 <ListItem avatar>
                     <Left>
-                        <Thumbnail source={{ uri: this.props.course.picture }} />
+                        <Thumbnail source={{uri: this.props.course.picture}} />
                     </Left>
                     <Body>
                         <Text numberOfLines={1}>{this.props.course.title}</Text>
