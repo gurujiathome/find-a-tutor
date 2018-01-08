@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "emulator": "%ANDROID_HOME%\\tools\\emulator.exe -avd Nexus_5X_API_23",
+    "run-server": "cd ../fat-backend && gulp develop",
     "test": "jest"
   },
   "dependencies": {
@@ -12,8 +13,12 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-fbsdk": "^0.6.3",
+    "react-native-vector-icons": "^4.4.3",
     "react-navigation": "^1.0.0-beta.22",
-    "react-native-vector-icons": "^4.4.3"
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-persist": "^5.4.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-jest": "22.0.4",
