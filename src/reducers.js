@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
 import nav from './reducers/nav';
-import settings from './reducers/settings';
+import user from './reducers/user';
 import {courses} from './reducers/courses';
+import {reducer as formReducer} from 'redux-form'
 
 export default combineReducers({
     nav,
-    settings,
-    courses
+    user,
+    courses,
+    form: formReducer
 });

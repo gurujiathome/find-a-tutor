@@ -1,6 +1,4 @@
-import {combineReducers} from 'redux';
-
-function user(state = {token: null, fbId: null}, action) {
+export default function user(state = {token: null, fbId: null}, action) {
     switch (action.type) {
         case 'LOGIN_SUCCESS':
             let userData = action.userData;
@@ -8,23 +6,11 @@ function user(state = {token: null, fbId: null}, action) {
             return userData;
         case 'LOGIN_FAIL':
             console.log(action.error);
-            return state;
+            return Object.assign({}, state, {error: action.error});
         case 'LOGIN_LOGOUT':
+        case 'ACCOUNT_REMOVED':
             return {token: null, fbId: null};
         default:
             return state;
     }
 }
-
-function mode(state = 'login', action) {
-    if (action.type === 'SELECT_MODE') {
-        return action.mode;
-    } else {
-        return state;
-    }
-}
-
-export default combineReducers({
-    user,
-    mode
-});
