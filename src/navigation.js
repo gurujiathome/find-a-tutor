@@ -4,6 +4,7 @@ import AddCourse from './screens/AddCourse';
 import LoginPage from './screens/LoginPage';
 import SplashScreen from './screens/SplashScreen';
 import Settings from './screens/Settings';
+import Course from './screens/Course';
 
 const MainAppNavigator = StackNavigator({
     Courses: {
@@ -14,6 +15,9 @@ const MainAppNavigator = StackNavigator({
     },
     AddCourse: {
         screen: AddCourse
+    },
+    Course: {
+        screen: Course
     }
 });
 

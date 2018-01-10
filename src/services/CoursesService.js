@@ -10,6 +10,9 @@ class CoursesServiceClass {
     addCourse(properties) {
         return fetch(serverUri + 'courses', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(properties)
         }).then(response => response.json())
     }
@@ -17,6 +20,9 @@ class CoursesServiceClass {
     editCourse(id, properties) {
         return fetch(serverUri + 'courses/' + id, {
             method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(properties)
         }).then(response => response.json())
     }
@@ -24,7 +30,14 @@ class CoursesServiceClass {
     getCourse(id) {
         return fetch(serverUri + 'courses/' + id, {
             method: 'GET',
-        }).then(response => response.json())
+        })
+            .then(response => response.json())
+            .then(response => {
+                let newCourse = Object.assign({}, response, response.user);
+                delete newCourse['user'];
+                console.log(newCourse);
+                return newCourse;
+            })
     }
 
     deleteCourse(id) {

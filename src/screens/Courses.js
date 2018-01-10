@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Body, Button, Container, Content, Fab, Header, Icon, Left, Right, Title} from 'native-base';
+import {Body, Button, Container, Content, Fab, Header, Icon, Left, List, Right, Title} from 'native-base';
 import {CourseListElement} from '../components/CourseListElement';
 import {connect} from 'react-redux';
 import {getCourses} from '../actions/courses';
@@ -13,7 +13,13 @@ class CoursesScreen extends Component {
         return (
             <Container>
                 <Content style={{backgroundColor: '#fff'}}>
-                    {this.props.courses.map(course => <CourseListElement key={course._id} course={course}/>)}
+                    <List dataArray={this.props.courses}
+                          renderRow={(course) =>
+                              <CourseListElement
+                                  onPress={() => this.props.navigation.navigate('Course', {id: course._id})}
+                                  key={course._id} course={course}
+                              />
+                          } />
                 </Content>
                 <Fab style={{backgroundColor: '#5067FF'}}
                      position="bottomRight"
