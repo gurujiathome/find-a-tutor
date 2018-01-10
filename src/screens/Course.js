@@ -18,6 +18,7 @@ import {
 import {connect} from 'react-redux';
 import {getCourse, leaveCoursePage, removeCourse} from '../actions/course';
 import {Alert} from 'react-native';
+import call from 'react-native-phone-call';
 
 class CourseScreen extends Component {
     constructor() {
@@ -68,6 +69,14 @@ class CourseScreen extends Component {
         );
     }
 
+    phoneCall() {
+        console.log(this.props.course.phone);
+        call({
+            number: this.props.course.phone,
+            prompt: true
+        }).catch(console.error)
+    }
+
     render() {
         console.log(this.props);
         const {course} = this.props;
@@ -96,6 +105,11 @@ class CourseScreen extends Component {
                         <CardItem>
                             <Text style={{fontWeight: 'bold'}}>Dodane przez: </Text>
                             <Text>{course.fullName}</Text>
+                        </CardItem>
+                        <CardItem>
+                            <Button success onPress={() => this.phoneCall(course.phone)}>
+                                <Text>Zadzwoń ({course.phone})</Text>
+                            </Button>
                         </CardItem>
                     </Card>
                 </Content>

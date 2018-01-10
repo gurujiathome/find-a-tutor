@@ -31,14 +31,14 @@ class CoursesScreen extends Component {
     }
 }
 
+let elem = <Button transparent onPress={() => navigation.navigate('DrawerOpen')}>
+    <Icon name="options"/>
+</Button>;
+
 CoursesScreen.navigationOptions = ({navigation}) => ({
     header: (
         <Header>
-            <Left>
-                <Button transparent onPress={() => navigation.navigate('DrawerOpen')}>
-                    <Icon name="options"/>
-                </Button>
-            </Left>
+            <Left />
             <Body>
             <Title>Dostępne kursy</Title>
             </Body>

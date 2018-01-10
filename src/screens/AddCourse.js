@@ -26,6 +26,7 @@ export class AddCourse extends Component {
             category: '',
             description: '',
             price: '',
+            phone: '',
             daysPicked: 'Wybierz dni tygodnia'
         }
     }
@@ -65,7 +66,7 @@ export class AddCourse extends Component {
     }
 
     sendForm() {
-        let formData = _.pick(this.state, ['title', 'category', 'description', 'price']);
+        let formData = _.pick(this.state, ['title', 'category', 'description', 'price', 'phone']);
         let days = _.pick(this.state, ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']);
 
         formData.user = this.props.user._id;
@@ -104,6 +105,10 @@ export class AddCourse extends Component {
                             <Input name="price" keyboardType={'numeric'} maxLength={3}
                                    onChangeText={(price) => this.setPrice({price})}
                                    placeholder="Cena za godzinę w PLN"/>
+                        </Item>
+                        <Item>
+                            <Input name="phone" keyboardType={'numeric'} placeholder="Numer telefonu"
+                                   onChangeText={(phone) => this.setState({phone})}/>
                         </Item>
                         <Item onPress={() => this.setState({modalVisible: true})} last>
                             <Input name="weekdays" disabled placeholder={this.state.daysPicked}/>
